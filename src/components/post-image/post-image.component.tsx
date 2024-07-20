@@ -1,16 +1,14 @@
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {TodaysImageModel} from '@models/todays-image.model';
-import {EAppColors} from '@constants/colors.constant';
 import {useNavigation} from '@react-navigation/native';
 import {HomeScreenNavigationProp} from '@routes/types';
 
-export interface Props {
-  data: TodaysImageModel.Image;
+interface Props {
+  data: TodaysImageModel.PostImage;
 }
 
-const TodaysImageComponent: React.FC<Props> = ({data}) => {
-  const {url, title, date} = data;
+const PostImageComponent: React.FC<Props> = ({data}) => {
   const {navigate} = useNavigation<HomeScreenNavigationProp>();
 
   const handleViewPress = () => {
@@ -19,9 +17,8 @@ const TodaysImageComponent: React.FC<Props> = ({data}) => {
 
   return (
     <View style={styles.container}>
-      <Image source={{uri: url}} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.date}>{date}</Text>
+      <Text style={styles.title}>{data.title}</Text>
+      <Text style={styles.date}>{data.date}</Text>
       <View style={styles.buttonContainer}>
         <Button title="View" onPress={handleViewPress} />
       </View>
@@ -29,30 +26,23 @@ const TodaysImageComponent: React.FC<Props> = ({data}) => {
   );
 };
 
-export default TodaysImageComponent;
+export default PostImageComponent;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: EAppColors.LightPrimary,
-    borderRadius: 32,
+    backgroundColor: 'rgba(18,39,113,255)',
+    borderRadius: 20,
+    marginBottom: 12,
     padding: 16,
-  },
-  image: {
-    width: '100%',
-    height: 190,
-    borderWidth: 2,
-    borderColor: 'white',
-    borderRadius: 32,
   },
   title: {
     color: 'white',
-    fontSize: 20,
-    marginVertical: 12,
     fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 12,
   },
   date: {
     color: 'white',
-    fontSize: 16,
   },
   buttonContainer: {
     alignItems: 'flex-end',

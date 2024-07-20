@@ -1,12 +1,12 @@
 import {EAppColors} from '@constants/colors.constant';
-import HomeScreen from '@screens/home';
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
+import RoutesContainer from '@routes/routes';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <HomeScreen />
+      <RoutesContainer />
     </SafeAreaView>
   );
 };
